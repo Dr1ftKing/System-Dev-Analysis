@@ -16,30 +16,36 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home' %}">CleanMate</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto me-2">
-                <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'features' %}">Features</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'pricing' %}">Pricing</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li>
-            </ul>
-            <!-- Blue Book Now button -->
-            <a href="{% url 'booking' %}" class="btn btn-primary">Book Now</a>
-        </div>
-    </div>
+      <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'home' %}">CleanMate</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+              <span class="navbar-toggler-icon"></span>
+              </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto me-2">
+                  <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'features' %}">Features</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'pricing' %}">Pricing</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li>
+              </ul>
+              {% if user.is_authenticated %}
+                <p>Welcome, {{ user.username }}!</p>
+                <a href="{% url 'logout' %}">Logout</a>
+              {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <!-- Blue Register button -->
+                <a href="{% url 'register' %}" class="btn btn-primary">Sign Up</a>
+              {% endif %}
+          </div>
+      </div>
     </nav>
 
 
   <div class="container text-center mt-5">
     <h1>Welcome to CleanMate!</h1>
     <p>Your trusted home cleaning solution.</p>
-    <button class="btn btn-white">Learn More</button>
-    <button class="btn btn-white">Get Started</button>
+    <a href="{% url 'features' %}"><button class="btn btn-white">Learn More</button></a>
+    <a href="{% url 'register' %}"><button class="btn btn-white">Get Started</button></a>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
