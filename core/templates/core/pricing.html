@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CleanMate - Pricing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}">CleanMate</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto me-2">
+        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'features' %}">Features</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'pricing' %}">Pricing</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact Us</a></li>
+      </ul>
+      <!-- Blue Book Now button -->
+      <a href="{% url 'booking' %}" class="btn btn-primary">Book Now</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="bg-light text-center py-5">
+  <div class="container">
+    <h1 class="display-5">Transparent Pricing for Every Home</h1>
+    <p class="lead">Choose the cleaning service that fits your needs and budget.</p>
+  </div>
+</header>
+
+<!-- Pricing Cards -->
+<section class="container py-5">
+  <div class="row text-center g-4">
+
+    <!-- Standard Cleaning -->
+    <div class="col-md-4">
+      <div class="card h-100 border-success">
+        <div class="card-header bg-success text-white">
+          Standard Cleaning
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">$50</h3>
+          <ul class="list-unstyled">
+            <li>1 hour cleaning</li>
+            <li>Kitchen, bathroom, and common areas</li>
+            <li>Surface sanitization</li>
+          </ul>
+          <a href="{% url 'booking' %}" class="btn btn-outline-primary mt-3">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deep Cleaning -->
+    <div class="col-md-4">
+      <div class="card h-100 border-success">
+        <div class="card-header bg-success text-white">
+          Deep Cleaning
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">$80</h3>
+          <ul class="list-unstyled">
+            <li>2 hours intensive cleaning</li>
+            <li>Baseboards, fridge, oven, windows</li>
+            <li>Recommended monthly</li>
+          </ul>
+          <a href="{% url 'booking' %}" class="btn btn-outline-success mt-3">Book Now</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Move-Out Cleaning -->
+    <div class="col-md-4">
+      <div class="card h-100 border-success">
+        <div class="card-header bg-success text-white">
+          Move-In/Out
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">$120</h3>
+          <ul class="list-unstyled">
+            <li>Full-property cleaning</li>
+            <li>Walls, cabinets, appliances</li>
+            <li>Ideal for leases & transitions</li>
+          </ul>
+          <a href="{% url 'booking' %}" class="btn btn-outline-warning mt-3">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add-ons -->
+  <div class="mt-5 text-center">
+    <h4>Optional Add-ons</h4>
+    <ul class="list-inline">
+      <li class="list-inline-item">🐾 Pet-Friendly Products: <strong>+$10</strong></li>
+      <li class="list-inline-item">🌿 Eco-friendly Supplies: <strong>+$5</strong></li>
+    </ul>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3">
+  <div class="container">
+    &copy; 2025 CleanMate. All rights reserved.
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
