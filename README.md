@@ -21,6 +21,9 @@ Use this section every time you come back to work on the project.
 source venv/bin/activate
 ```
 
+## Start the Development Server:
+    python manage.py runserver
+
 ## Shut Down (First-Time or Anytime)
 
 ### To stop the development server:
