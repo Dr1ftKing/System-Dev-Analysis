@@ -26,7 +26,8 @@ def register(request):
             user.profile.user_type = form.cleaned_data['user_type']
             user.profile.save()
             login(request, user)
-            return redirect('index')
+            return redirect('home')
     else:
         form = CustomSignupForm()
     return render(request, 'core/register.html', {'form': form})
+
