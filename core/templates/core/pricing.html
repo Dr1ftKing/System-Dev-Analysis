@@ -30,7 +30,7 @@
                     <button type="submit">Logout</button>
                 </form>
               {% else %}
-                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'login' %}" class="me-2">Login</a>
                 <!-- Blue Register button -->
                 <a href="{% url 'register' %}" class="btn btn-primary">Sign Up</a>
               {% endif %}

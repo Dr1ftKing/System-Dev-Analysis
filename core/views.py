@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from .forms import CustomSignupForm
+from django.contrib.auth.decorators import login_required
+from .forms import CustomSignupForm , BookingForm
 # from django.shortcuts import render
 
 def home(request):
@@ -31,3 +32,24 @@ def register(request):
         form = CustomSignupForm()
     return render(request, 'core/register.html', {'form': form})
 
+
+@login_required
+def create_booking(request):
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            booking = form.save(commit=False)
+            booking.customer = request.user
+            booking.save()
+            return redirect('home')
+    else:
+        form = BookingForm()
+    return render(request, 'core/booking.html', {'form': form})
+
+@login_required
+def booking_list(request):
+    if hasattr(request.user, 'profile') and request.user.profile.user_type == 'Cleaner':
+        bookings = Booking.objects.filter(cleaner=request.user)
+    else:
+        bookings = Booking.objects.filter(customer=request.user)
+    return render(request, 'core/booking_list.html', {'bookings': bookings})
