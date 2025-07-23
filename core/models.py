@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 class Profile(models.Model):
     USER_TYPES = [
@@ -14,6 +16,11 @@ class Profile(models.Model):
         return f"{self.user.username} ({self.user_type})"
 
 class Booking(models.Model):
+    STATUS_CHOICES = [
+        ('Pending', 'Pending'),
+        ('Accepted', 'Accepted'),
+        ('Rejected', 'Rejected'),
+    ]
     customer = models.ForeignKey(User, related_name='customer_bookings', on_delete=models.CASCADE)
     cleaner = models.ForeignKey(User, related_name='cleaner_bookings', on_delete=models.CASCADE)
     date = models.DateField()
@@ -23,3 +30,8 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"{self.customer.username} -> {self.cleaner.username} on {self.date}"
+    
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
