@@ -50,10 +50,42 @@
 <div class="container mt-5">
   <h2 class="text-center mb-4">Book a Cleaning Service</h2>
   <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-success">Book Now</button>
-  </form>
+  {% csrf_token %}
+
+  <div class="mb-3">
+    <label for="id_cleaner" class="form-label">Select a Cleaner</label>
+    {{ form.cleaner }}
+  </div>
+
+  <div class="mb-3">
+    <label for="id_date" class="form-label">Date</label>
+    {{ form.date }}
+  </div>
+
+  <div class="mb-3">
+    <label for="id_time" class="form-label">Time</label>
+    {{ form.time }}
+  </div>
+
+  <div class="mb-3">
+    <label for="id_service_type" class="form-label">Service Type</label>
+    {{ form.service_type }}
+  </div>
+
+  <div class="mb-3">
+    <label for="id_add_ons" class="form-label">Optional Add-ons</label>
+    {{ form.add_ons }}
+  </div>
+
+  <div class="mb-3">
+    <label for="id_notes" class="form-label">Notes</label>
+    {{ form.notes }}
+  </div>
+
+  <button type="submit" class="btn btn-success">Book Now</button>
+</form>
+
+
 </div>
 
 

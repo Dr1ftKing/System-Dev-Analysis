@@ -1,8 +1,8 @@
 {% extends 'core/base.html' %}
 {% block content %}
 <h2>Manage Bookings</h2>
-<table class="table">
-  <thead>
+<table class="table table-bordered">
+  <thead class="table-light">
     <tr>
       <th>Customer</th>
       <th>Date</th>
@@ -21,11 +21,21 @@
       <td>{{ booking.service_type }}</td>
       <td>{{ booking.notes }}</td>
       <td>
-        <form method="post" action="{% url 'update_booking_status' booking.id %}">
-          {% csrf_token %}
-          <button name="status" value="Accepted" class="btn btn-success btn-sm">Accept</button>
-          <button name="status" value="Rejected" class="btn btn-danger btn-sm">Reject</button>
-        </form>
+        {% if booking.status == "pending" %}
+          <form method="post" action="{% url 'update_booking_status' booking.id %}">
+            {% csrf_token %}
+            <button name="status" value="accepted" class="btn btn-success btn-sm me-1">Accept</button>
+            <button name="status" value="rejected" class="btn btn-danger btn-sm">Reject</button>
+          </form>
+        {% elif booking.status == "accepted" %}
+          <span class="badge bg-success">Accepted</span>
+          <form method="post" action="{% url 'update_booking_status' booking.id %}" class="mt-2">
+            {% csrf_token %}
+            <button name="status" value="rejected" class="btn btn-warning btn-sm">Cancel</button>
+          </form>
+        {% elif booking.status == "rejected" %}
+          <span class="badge bg-secondary">Rejected</span>
+        {% endif %}
       </td>
     </tr>
     {% endfor %}

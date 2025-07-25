@@ -62,6 +62,7 @@ def create_booking(request):
         if form.is_valid():
             booking = form.save(commit=False)
             booking.customer = request.user
+            booking.status = 'pending'  # ✅ Set default status explicitly
             booking.save()
             return redirect('home')
     else:
@@ -79,17 +80,18 @@ def booking_list(request):
 @login_required
 #@user_passes_test(is_cleaner)
 def manage_bookings(request):
-    bookings = Booking.objects.filter(status='Pending').order_by('date')
+    bookings = Booking.objects.filter(cleaner=request.user).order_by('date')
     return render(request, 'core/manage_bookings.html', {'bookings': bookings})
 
 
-@login_required
-@user_passes_test(is_cleaner)
 @require_POST
+@login_required
+#@user_passes_test(is_cleaner)
 def update_booking_status(request, booking_id):
     booking = get_object_or_404(Booking, id=booking_id)
     status = request.POST.get('status')
-    if status in ['Accepted', 'Rejected']:
+    if status in ['accepted', 'rejected']:
         booking.status = status
         booking.save()
     return redirect('manage_bookings')
+
